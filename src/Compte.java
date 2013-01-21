@@ -21,6 +21,7 @@ public class Compte implements Serializable{
         solde = sold;
     }
     
+    
     public String getNumeroCompte(){
         return numeroCompte;
     }
@@ -38,7 +39,15 @@ public class Compte implements Serializable{
             System.out.println(L.get(S)+" %");
         }
     }
-    
+    public Double getCreditTotal(){
+        double somme = 0;
+        for (LigneComptable L : ligne){
+            if (L.getSensOperation().equals("Crédit")){
+                somme += L.getValeur();
+            }
+        }
+        return somme;
+    }
     public HashMap<String, Double> calculPourcentage(){
         ArrayList<String> theme = this.getListeTheme();
         HashMap<String, Double> listePourcentage;

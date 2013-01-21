@@ -1,6 +1,7 @@
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -81,7 +82,22 @@ public class ListeCompte implements Serializable{
             System.out.println("Suppression échoué !!!");
         }
     }
+    public HashMap<String, Double> getPourcentageDebit(String numcompte){
+        Compte C = (Compte) listeCompte.get(numcompte);
+        HashMap<String, Double> H = C.calculPourcentage();
+        return H;
+    }
     
+    public ArrayList<String> getThemeDebit(String numcompte){
+        Compte C = (Compte) listeCompte.get(numcompte);
+        ArrayList<String> L = C.getListeTheme();
+        return L;
+    }
+    
+    public double getCreditTotal(String numcompte){
+        Compte C = (Compte) listeCompte.get(numcompte);
+        return C.getCreditTotal();
+    }
     public void AffichePourcentage(String numCompte){
         Compte C = (Compte) listeCompte.get(numCompte);
         C.affichePourcentage();
