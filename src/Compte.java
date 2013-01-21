@@ -32,7 +32,6 @@ public class Compte implements Serializable{
     public void affichePourcentage(){
         ArrayList<String> theme;
         theme = (ArrayList<String>) this.getListeTheme();
-        
         HashMap<String, Double> L = calculPourcentage();
         for (String S : theme){
             System.out.println(S+" :");
@@ -44,25 +43,28 @@ public class Compte implements Serializable{
         ArrayList<String> theme = this.getListeTheme();
         HashMap<String, Double> listePourcentage;
         double sommePourcentage;
-        double sommeTotale = 0;
+        double sommeTotale ;
         double pourcentage ;
         int i = 0;
         
         listePourcentage = new HashMap<>();
-        while (i < theme.size()){
+        while (i < theme.size() ) {
             sommePourcentage = 0;
+            sommeTotale = 0;
             for (LigneComptable L : ligne){
                 if (L.getSensOperation().equalsIgnoreCase("Débit")
                         && L.getTheme().equalsIgnoreCase(theme.get(i))){
                     sommePourcentage += L.getValeur();
-                }else if (L.getSensOperation().equalsIgnoreCase("Débit")){
+                }
+                if (L.getSensOperation().equalsIgnoreCase("Débit")){
                     sommeTotale += L.getValeur();
                 }
             }
             pourcentage = (sommePourcentage * 100) / sommeTotale;
-          
-            listePourcentage.put(theme.get(i), pourcentage);
-              i++;
+            if (!listePourcentage.containsKey(theme.get(i))){
+                listePourcentage.put(theme.get(i), pourcentage);
+            }
+            i++;
         }
         return listePourcentage;
     }
@@ -72,19 +74,14 @@ public class Compte implements Serializable{
         theme = new ArrayList<>(10);
         int j = 0;
         String tmpTheme;
-        
-        for (LigneComptable L : ligne){
-            tmpTheme = L.getTheme();
-            if (theme.isEmpty()){
-                theme.add(tmpTheme);
-            }else{
-                while (j < theme.size()){
-                    if (!tmpTheme.equals(theme.get(j))){
-                        theme.add(tmpTheme);
-                    }
-                    j++;
+        while (j < ligne.size()){
+            for (LigneComptable L : ligne){
+                tmpTheme = L.getTheme();
+                if (!theme.contains(tmpTheme)){
+                    theme.add(tmpTheme);
                 }
             }
+            j++;
         }
         return theme;
     }
@@ -92,14 +89,8 @@ public class Compte implements Serializable{
     public void creerLigneComptable(){
         ligne.add(new LigneComptable(solde));
         int i = ligne.size() - 1;
-        System.out.println(i);
         LigneComptable L = ligne.get(i);
         solde = L.getNewSolde();
-        //			if (ligne.get(ligne.lastIndexOf(ligne)) != null ){
-        //				return true;
-        //			}else {
-        //				return false;
-        //			}
     }
     
     public void afficherLignes(){
@@ -124,10 +115,9 @@ public class Compte implements Serializable{
         }
     }
     
-    
     @Override
     public String toString(){
         return "\nNuméro de compte : "+numeroCompte+"\nType de compte : "+type+"\nSolde : "+solde;
     }
-    
+
 }

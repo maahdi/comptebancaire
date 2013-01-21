@@ -17,17 +17,16 @@ public class ListeCompte implements Serializable{
 	public ListeCompte(){
 		listeCompte = new HashMap<>();
 	}
-
-	public void ajouteUneLigne(String numcompte){
-		Compte tmp;
-		tmp = (Compte) listeCompte.get(numcompte);
-		if (tmp != null) {
+        
+        public void ajouteUneLigne(String numcompte){
+            Compte tmp;
+            tmp = (Compte) listeCompte.get(numcompte);
+            if (tmp != null) {
                 tmp.creerLigneComptable();
-            }
-		else {
+            }else {
                 System.out.println("Pas de compte associé au numéro !!!");
             }
-	}
+        }
 	
 	public void afficherLignes(String numcompte){
 		Compte tmp;
@@ -76,14 +75,13 @@ public class ListeCompte implements Serializable{
 		}
 	}
 	
-	public void supprimerCompte(String numcompte){
-			
-			if (listeCompte.remove(numcompte) != null){
-				System.out.println("Supression réussie !!!");
-			}else if (listeCompte.get(numcompte) != null){
-				System.out.println("Suppression échoué !!!");
-			}
-	}
+        public void supprimerCompte(String numcompte){
+            if (listeCompte.remove(numcompte) != null){
+                System.out.println("Supression réussie !!!");
+            }else if (listeCompte.get(numcompte) != null){
+                System.out.println("Suppression échoué !!!");
+            }
+        }
         
         public void AffichePourcentage(String numCompte){
             Compte C = (Compte) listeCompte.get(numCompte);
@@ -91,12 +89,10 @@ public class ListeCompte implements Serializable{
         }
 	
 	public void saisieNewCompte(){
-
 		Scanner lc = new Scanner(System.in);
 		String type="";
 		String numcompte = " ";
 		double solde = 0;
-		
 
 		System.out.println("==============Création de compte=====================");
 		System.out.println("Numéro de compte : ");
