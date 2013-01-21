@@ -5,16 +5,8 @@ import java.util.regex.Pattern;
 
 public class AppelProg{
     
-    static Pattern patternNumCompte ;
-    
-    
-    
-    
     //----------------------------------------MENU--------------------------------------//
     public static void menuBanque(FichierCompte F, ListeCompte listeCompte){
-        
-        
-        
         boolean t = true;
         byte choix =0;
         while (t){
@@ -112,7 +104,6 @@ public class AppelProg{
             System.out.println(" 3. Recherche");
             System.out.println(" 4. Afficher statistiques débit du compte");
             System.out.println(" 5. Revenir au menu 'Banque'");
-            
             int o = sc.nextInt();
             switch (o){
                 case 1:
@@ -140,9 +131,7 @@ public class AppelProg{
                     break;
             }
         }
-        
     }
-    
     
     //------------------------------MAIN-----------------------------------------//
     public static void main(String [] args){

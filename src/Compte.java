@@ -35,7 +35,7 @@ public class Compte implements Serializable{
         HashMap<String, Double> L = calculPourcentage();
         for (String S : theme){
             System.out.println(S+" :");
-            System.out.println(L.get(S));
+            System.out.println(L.get(S)+" %");
         }
     }
     
@@ -61,8 +61,19 @@ public class Compte implements Serializable{
                 }
             }
             pourcentage = (sommePourcentage * 100) / sommeTotale;
+            System.out.print(pourcentage);
+            
+            String s = String.valueOf(pourcentage);
+            if (s.length() < 5){
+                s = s.substring(0, 4);
+            }else if (s.startsWith("100")){
+                s = "100";
+            }else{
+                s = s.substring(0, 5);
+            }
+            
             if (!listePourcentage.containsKey(theme.get(i))){
-                listePourcentage.put(theme.get(i), pourcentage);
+                listePourcentage.put(theme.get(i), Double.parseDouble(s));
             }
             i++;
         }
@@ -76,9 +87,11 @@ public class Compte implements Serializable{
         String tmpTheme;
         while (j < ligne.size()){
             for (LigneComptable L : ligne){
-                tmpTheme = L.getTheme();
-                if (!theme.contains(tmpTheme)){
-                    theme.add(tmpTheme);
+                if (L.getSensOperation().equals("Débit")){
+                    tmpTheme = L.getTheme().toLowerCase();
+                    if (!theme.contains(tmpTheme.toLowerCase())){
+                        theme.add(tmpTheme.toLowerCase());
+                    }
                 }
             }
             j++;
