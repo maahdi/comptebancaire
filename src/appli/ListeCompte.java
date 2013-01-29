@@ -1,3 +1,5 @@
+package appli;
+
 
 
 import java.io.Serializable;
@@ -27,6 +29,15 @@ public class ListeCompte implements Serializable{
         }else {
             System.out.println("Pas de compte associé au numéro !!!");
         }
+    }
+    
+    public Compte  quelCompte(String n){
+        String clé = n;
+        Compte c = (Compte) listeCompte.get(clé);
+        if (c == null) {
+            System.out.println("Le systeme ne connait pas le compte "+n);
+        }
+        return(c);
     }
     
     public void afficherLignes(String numcompte){

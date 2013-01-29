@@ -1,5 +1,8 @@
+package appli;
 
 
+
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,9 +42,12 @@ public class FichierCompte {
     }
     //Renvoi la collection d'objet HashMap
     public ListeCompte lire(){
+        ListeCompte tmp;
         try{
-            ListeCompte tmp = (ListeCompte) ofR.readObject();
+            while ((tmp= (ListeCompte) ofR.readObject()) != null){
+//            tmp = (ListeCompte) ofR.readObject();
             return tmp;
+            }
         }catch(IOException e){
             System.out.println(nomDuFichier+" : Erreur de lecture");
         }catch(ClassNotFoundException e){

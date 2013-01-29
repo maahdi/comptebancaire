@@ -1,3 +1,5 @@
+package graphique;
+
 
 import java.awt.Color;
 import java.awt.Frame;
@@ -15,12 +17,12 @@ public class Fenetre {
     public final static int height = 400;
     public final static int width = 400;
     
-    public static void main(String [] args){
+    public Fenetre(Stat S){
         Frame F = new Frame();
         F.setTitle("Histogramme");
         F.setBackground(Color.gray);
         F.setSize(height, width);
-        Dessin page = new Dessin();
+        Dessin page = new Dessin(S);
         F.add(page, "Center");
         F.add(new DesBoutons(page), "South");
         F.addWindowListener(new GestionFenetre());

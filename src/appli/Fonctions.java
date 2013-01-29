@@ -1,3 +1,5 @@
+package appli;
+
 
 import java.util.Scanner;
 
